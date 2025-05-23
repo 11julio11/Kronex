@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import testimonial1 from '../assets/images/testimonials/testimonial-1.webp';
+import testimonial2 from '../assets/images/testimonials/testimonial-2.webp';
+import testimonial3 from '../assets/images/testimonials/testimonial-3.webp';
+import testimonial4 from '../assets/images/testimonials/testimonial-4.webp';
 
 const Testimonials = () => {
   const testimonials = [
@@ -7,28 +11,28 @@ const Testimonials = () => {
       name: 'Roberto Gómez',
       role: 'Miembro desde 2020',
       quote: 'He probado muchos gimnasios, pero EliteGym realmente cambió mi vida. Los entrenadores son excepcionales y el ambiente me motiva cada día a superar mis límites.',
-      image: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: testimonial1,
       rating: 5,
     },
     {
       name: 'María Jiménez',
       role: 'Miembro desde 2021',
       quote: 'Las instalaciones son de primera clase y el equipo de nutrición realmente marcó la diferencia en mis resultados. No puedo imaginar entrenar en otro lugar.',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: testimonial2,
       rating: 5,
     },
     {
       name: 'Diego Fernández',
       role: 'Miembro desde 2019',
       quote: 'EliteGym no es solo un gimnasio, es una comunidad. He logrado metas que nunca pensé posibles gracias al apoyo constante de los entrenadores y otros miembros.',
-      image: 'https://images.pexels.com/photos/2269872/pexels-photo-2269872.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: testimonial3,
       rating: 5,
     },
     {
       name: 'Lucía Martínez',
       role: 'Miembro desde 2022',
       quote: 'Las clases grupales son increíbles, siempre hay algo nuevo que probar. El ambiente es acogedor a pesar de ser un gimnasio de élite, me sentí bienvenida desde el primer día.',
-      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: testimonial4,
       rating: 4,
     },
   ];
@@ -69,6 +73,7 @@ const Testimonials = () => {
                           src={testimonial.image} 
                           alt={testimonial.name} 
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       </div>
                       <div className="text-center">

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Calendar, User, ArrowRight, X } from 'lucide-react';
+import blog1 from '../assets/images/blog/blog-1.webp';
+import blog2 from '../assets/images/blog/blog-2.webp';
+import blog3 from '../assets/images/blog/blog-3.webp';
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);
@@ -45,7 +48,7 @@ Consejos adicionales:
 - Progresión gradual en peso y repeticiones
 - Descanso y recuperación entre series
 - Nutrición para optimizar resultados`,
-      image: 'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: blog1,
       date: '15 Mar 2025',
       author: 'Carlos Mendoza',
       category: 'Entrenamiento',
@@ -92,7 +95,7 @@ Consejos Adicionales:
 - Ajuste según tipo e intensidad de entrenamiento
 - Consideraciones para objetivos específicos
 - Importancia de la consistencia`,
-      image: 'https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: blog2,
       date: '02 Mar 2025',
       author: 'Laura Sánchez',
       category: 'Nutrición',
@@ -138,7 +141,7 @@ Plan de Acción:
 - Ajustes basados en respuesta
 - Documentación de cambios
 - Celebración de pequeñas victorias`,
-      image: 'https://images.pexels.com/photos/4498482/pexels-photo-4498482.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: blog3,
       date: '22 Feb 2025',
       author: 'Miguel Ángel Torres',
       category: 'Motivación',
@@ -164,6 +167,7 @@ Plan de Acción:
                   src={post.image} 
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-gold text-black text-xs font-semibold py-1 px-2 rounded">
                   {post.category}
@@ -244,6 +248,7 @@ Plan de Acción:
                 src={blogPosts[selectedPost].image} 
                 alt={blogPosts[selectedPost].title}
                 className="w-full h-64 object-cover rounded-lg mb-6"
+                loading="lazy"
               />
               
               <div className="prose max-w-none">
