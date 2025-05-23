@@ -2,6 +2,11 @@ import React from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
 
 const Contact = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // No backend functionality - just prevent form submission
+  };
+
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -79,7 +84,7 @@ const Contact = () => {
           </div>
           
           <div className="lg:w-1/2">
-            <form className="bg-white rounded-lg shadow-lg p-8">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Envíanos un mensaje</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
