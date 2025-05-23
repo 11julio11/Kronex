@@ -1,42 +1,20 @@
-/*
-  # Initial database schema
+-- Crear tabla de usuarios
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
+);  -- Punto y coma añadido aquí
 
-  1. New Tables
-    - users (managed by Supabase Auth)
-    - profiles
-      - id (references auth.users)
-      - full_name
-      - avatar_url
-      - updated_at
-    - subscriptions
-      - id
-      - user_id (references profiles)
-      - stripe_subscription_id
-      - stripe_customer_id
-      - plan_id
-      - status
-      - current_period_end
-      - created_at
-    - images
-      - id
-      - user_id (references profiles)
-      - url
-      - created_at
-
-  2. Security
-    - Enable RLS on all tables
-    - Add policies for authenticated users
-*/
-
--- Create profiles table
+-- Tabla profiles
 CREATE TABLE profiles (
-  id UUID REFERENCES auth.users PRIMARY KEY,
+  id UUID PRIMARY KEY REFERENCES users(id),
   full_name TEXT,
   avatar_url TEXT,
   updated_at TIMESTAMPTZ DEFAULT now()
-);
+);  -- Punto y coma añadido aquí
 
--- Create subscriptions table
+-- Tabla subscriptions
 CREATE TABLE subscriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES profiles(id) NOT NULL,
@@ -47,48 +25,48 @@ CREATE TABLE subscriptions (
   current_period_end TIMESTAMPTZ,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
-);
+);  -- Punto y coma añadido aquí
 
--- Create images table
+-- Tabla images
 CREATE TABLE images (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES profiles(id) NOT NULL,
   url TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT now()
-);
+);  -- Punto y coma añadido aquí
 
--- Enable Row Level Security
+-- RLS (Row Level Security)
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE images ENABLE ROW LEVEL SECURITY;
 
--- Create policies
-CREATE POLICY "Users can read own profile" 
-  ON profiles FOR SELECT 
-  TO authenticated 
-  USING (auth.uid() = id);
+-- Políticas con variable de sesión personalizada
+CREATE POLICY "Users can read own profile"
+  ON profiles FOR SELECT
+  TO public
+  USING (current_setting('my.uid', true)::uuid = id);
 
-CREATE POLICY "Users can update own profile" 
-  ON profiles FOR UPDATE 
-  TO authenticated 
-  USING (auth.uid() = id);
+CREATE POLICY "Users can update own profile"
+  ON profiles FOR UPDATE
+  TO public
+  USING (current_setting('my.uid', true)::uuid = id);
 
-CREATE POLICY "Users can read own subscriptions" 
-  ON subscriptions FOR SELECT 
-  TO authenticated 
-  USING (auth.uid() = user_id);
+CREATE POLICY "Users can read own subscriptions"
+  ON subscriptions FOR SELECT
+  TO public
+  USING (current_setting('my.uid', true)::uuid = user_id);
 
-CREATE POLICY "Users can read own images" 
-  ON images FOR SELECT 
-  TO authenticated 
-  USING (auth.uid() = user_id);
+CREATE POLICY "Users can read own images"
+  ON images FOR SELECT
+  TO public
+  USING (current_setting('my.uid', true)::uuid = user_id);
 
-CREATE POLICY "Users can insert own images" 
-  ON images FOR INSERT 
-  TO authenticated 
-  WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can insert own images"
+  ON images FOR INSERT
+  TO public
+  WITH CHECK (current_setting('my.uid', true)::uuid = user_id);
 
-CREATE POLICY "Users can delete own images" 
-  ON images FOR DELETE 
-  TO authenticated 
-  USING (auth.uid() = user_id);
+CREATE POLICY "Users can delete own images"
+  ON images FOR DELETE
+  TO public
+  USING (current_setting('my.uid', true)::uuid = user_id);
