@@ -1,5 +1,9 @@
 import React from 'react';
 import { Instagram, Twitter, Linkedin } from 'lucide-react';
+import trainer1 from '../assets/images/trainers/trainer-1.webp';
+import trainer2 from '../assets/images/trainers/trainer-2.webp';
+import trainer3 from '../assets/images/trainers/trainer-3.webp';
+import trainer4 from '../assets/images/trainers/trainer-4.webp';
 
 const Trainers = () => {
   const trainers = [
@@ -7,7 +11,7 @@ const Trainers = () => {
       name: 'Carlos Mendoza',
       role: 'Entrenador Principal',
       specialty: 'Musculación y Fuerza',
-      image: 'https://images.pexels.com/photos/1756959/pexels-photo-1756959.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: trainer1,
       social: {
         instagram: '#',
         twitter: '#',
@@ -18,7 +22,7 @@ const Trainers = () => {
       name: 'Laura Sánchez',
       role: 'Nutricionista',
       specialty: 'Nutrición Deportiva',
-      image: 'https://images.pexels.com/photos/5325840/pexels-photo-5325840.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: trainer2,
       social: {
         instagram: '#',
         twitter: '#',
@@ -29,7 +33,7 @@ const Trainers = () => {
       name: 'Miguel Ángel Torres',
       role: 'Entrenador',
       specialty: 'Crossfit y HIIT',
-      image: 'https://images.pexels.com/photos/6456300/pexels-photo-6456300.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: trainer3,
       social: {
         instagram: '#',
         twitter: '#',
@@ -40,7 +44,7 @@ const Trainers = () => {
       name: 'Ana Martínez',
       role: 'Instructora',
       specialty: 'Yoga y Pilates',
-      image: 'https://images.pexels.com/photos/3768913/pexels-photo-3768913.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      image: trainer4,
       social: {
         instagram: '#',
         twitter: '#',
@@ -71,6 +75,7 @@ const Trainers = () => {
                   src={trainer.image} 
                   alt={trainer.name} 
                   className="w-full h-80 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex space-x-4 transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
