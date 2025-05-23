@@ -1,47 +1,55 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
+import gallery1 from '../assets/images/gallery/gallery-1.webp';
+import gallery2 from '../assets/images/gallery/gallery-2.webp';
+import gallery3 from '../assets/images/gallery/gallery-3.webp';
+import gallery4 from '../assets/images/gallery/gallery-4.webp';
+import gallery5 from '../assets/images/gallery/gallery-5.webp';
+import gallery6 from '../assets/images/gallery/gallery-6.webp';
+import gallery7 from '../assets/images/gallery/gallery-7.webp';
+import gallery8 from '../assets/images/gallery/gallery-8.webp';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const galleryImages = [
     {
-      src: 'https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery1,
       alt: 'Área de pesas',
       category: 'instalaciones'
     },
     {
-      src: 'https://images.pexels.com/photos/2247179/pexels-photo-2247179.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery2,
       alt: 'Clase de spinning',
       category: 'clases'
     },
     {
-      src: 'https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery3,
       alt: 'Entrenamiento funcional',
       category: 'entrenamientos'
     },
     {
-      src: 'https://images.pexels.com/photos/2261477/pexels-photo-2261477.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery4,
       alt: 'Área de cardio',
       category: 'instalaciones'
     },
     {
-      src: 'https://images.pexels.com/photos/866023/pexels-photo-866023.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery5,
       alt: 'Clase de yoga',
       category: 'clases'
     },
     {
-      src: 'https://images.pexels.com/photos/136404/pexels-photo-136404.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery6,
       alt: 'Spa y sauna',
       category: 'instalaciones'
     },
     {
-      src: 'https://images.pexels.com/photos/791763/pexels-photo-791763.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery7,
       alt: 'Evento fitness',
       category: 'eventos'
     },
     {
-      src: 'https://images.pexels.com/photos/3076516/pexels-photo-3076516.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      src: gallery8,
       alt: 'Entrenamiento personal',
       category: 'entrenamientos'
     },
@@ -79,6 +87,7 @@ const Gallery = () => {
                 src={image.src} 
                 alt={image.alt} 
                 className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-opacity duration-300 flex items-center justify-center">
                 <div className="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">

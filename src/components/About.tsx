@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Award, Heart } from 'lucide-react';
+import aboutImage from '../assets/images/about/about-gym.webp';
 
 const About = () => {
   return (
@@ -14,9 +15,10 @@ const About = () => {
           <div className="md:w-1/2">
             <div className="relative">
               <img 
-                src="https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+                src={aboutImage} 
                 alt="Gym interior" 
                 className="rounded-lg shadow-xl"
+                loading="lazy"
               />
               <div className="absolute -bottom-10 -right-10 bg-gold text-black p-6 rounded-lg hidden md:block">
                 <p className="text-4xl font-bold">10+</p>

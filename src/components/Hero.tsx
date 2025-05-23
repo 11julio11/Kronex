@@ -1,4 +1,5 @@
 import React from 'react';
+import heroImage from '../assets/images/hero/hero-bg.webp';
 
 const Hero = () => {
   const scrollToPlans = () => {
@@ -13,7 +14,7 @@ const Hero = () => {
       id="home" 
       className="relative h-screen flex items-center justify-center"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600")',
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
