@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dumbbell, Phone, Mail, MapPin, Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
 
 const Footer = () => {

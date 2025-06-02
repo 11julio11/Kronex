@@ -1,5 +1,5 @@
 import { Target, Award, Heart } from 'lucide-react';
-import aboutImage from '../assets/images/about/about.png';
+import aboutImage from '../assets/images/about/about.jpeg';
 
 const About = () => {
   return (

@@ -1,4 +1,4 @@
-import heroImage from '../assets/images/hero/hero.png';
+import heroImage from '../assets/images/hero/hero.jpeg';
 
 const Hero = () => {
   const scrollToPlans = () => {

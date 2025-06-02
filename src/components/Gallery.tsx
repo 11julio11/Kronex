@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import gallery1 from '../assets/images/gallery/entrenamiento_funcional.png';
-import gallery2 from '../assets/images/gallery/area_de_pesas.png';
-import gallery3 from '../assets/images/gallery/clases_de_spinning.png';
-import gallery4 from '../assets/images/gallery/area_de_cardio.png';
-import gallery5 from '../assets/images/gallery/clases_de_yoga.png';
-import gallery6 from '../assets/images/gallery/entrenamiento_personal.png';
-import gallery7 from '../assets/images/gallery/evento_fitness.png';
-import gallery8 from '../assets/images/gallery/spaysauna.png';
+import gallery1 from '../assets/images/gallery/entrenamiento_funcional.jpeg';
+import gallery2 from '../assets/images/gallery/area_de_pesas.jpeg';
+import gallery3 from '../assets/images/gallery/clases_de_spinning.jpeg';
+import gallery4 from '../assets/images/gallery/area_de_cardio.jpeg';
+import gallery5 from '../assets/images/gallery/clases_de_yoga.jpeg';
+import gallery6 from '../assets/images/gallery/entrenamiento_personal.jpeg';
+import gallery7 from '../assets/images/gallery/evento_fitness.jpeg';
+import gallery8 from '../assets/images/gallery/spaysauna.jpeg';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

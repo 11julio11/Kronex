@@ -1,8 +1,8 @@
 import { Instagram, Twitter, Linkedin } from 'lucide-react';
-import trainer1 from '../assets/images/trainers/trainer-1.png';
-import trainer2 from '../assets/images/trainers/trainer-2.png';
-import trainer3 from '../assets/images/trainers/trainer-3.png';
-import trainer4 from '../assets/images/trainers/trainer-4.png';
+import trainer1 from '../assets/images/trainers/trainer-1.jpeg';
+import trainer2 from '../assets/images/trainers/trainer-2.jpeg';
+import trainer3 from '../assets/images/trainers/trainer-3.jpeg';
+import trainer4 from '../assets/images/trainers/trainer-4.jpeg';
 
 const Trainers = () => {
   const trainers = [
