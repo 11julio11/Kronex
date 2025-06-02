@@ -5,7 +5,7 @@ import gallery2 from '../assets/images/gallery/areadepesas.png';
 import gallery3 from '../assets/images/gallery/Clasedespinning.png';
 import gallery4 from '../assets/images/gallery/areadecardio.png';
 import gallery5 from '../assets/images/gallery/Clasedeyoga.png';
-import gallery6 from '../assets/images/gallery/Entrenamientopersonal.png';
+import gallery6 from '../assets/images/gallery/entrenamientopersonal.png';
 import gallery7 from '../assets/images/gallery/Eventofitness.png';
 import gallery8 from '../assets/images/gallery/Spaysauna.png';
 
