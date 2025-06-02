@@ -26,6 +26,7 @@ const About = () => {
             </div>
           </div>
 
+
           <div className="md:w-1/2">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Un gimnasio como ningún otro</h3>
             <p className="text-gray-300 mb-8 leading-relaxed">
