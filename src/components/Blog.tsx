@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calendar, User, ArrowRight, X } from 'lucide-react';
-import blog1 from '../assets/images/blog/blog-1.webp';
-import blog2 from '../assets/images/blog/blog-2.webp';
-import blog3 from '../assets/images/blog/blog-3.webp';
+import blog1 from '../assets/images/blog/blog-1.png';
+import blog2 from '../assets/images/blog/blog-2.png';
+import blog3 from '../assets/images/blog/blog-3.png';
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);

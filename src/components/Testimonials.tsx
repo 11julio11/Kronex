@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import testimonial1 from '../assets/images/testimonials/testimonial-1.webp';
-import testimonial2 from '../assets/images/testimonials/testimonial-2.webp';
-import testimonial3 from '../assets/images/testimonials/testimonial-3.webp';
-import testimonial4 from '../assets/images/testimonials/testimonial-4.webp';
+import testimonial1 from '../assets/images/testimonials/testimonial-1.png';
+import testimonial2 from '../assets/images/testimonials/testimonial-2.png';
+import testimonial3 from '../assets/images/testimonials/testimonial-3.png';
+import testimonial4 from '../assets/images/testimonials/testimonial-4.png';
 
 const Testimonials = () => {
   const testimonials = [

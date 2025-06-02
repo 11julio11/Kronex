@@ -1,10 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // No backend functionality - just prevent form submission
+    setStatus('sending');
+
+    try {
+      await emailjs.send(
+        'service_0awzw2m', // Replace with your EmailJS service ID
+        'template_42jj02p', // Replace with your EmailJS template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'romerojesusdavid76@gmail.com' // Replace with your email
+        },
+        'bGIPGmIuz_2uxmX2r' // Replace with your EmailJS public key
+      );
+
+      setStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+      setTimeout(() => setStatus('idle'), 5000);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -92,9 +138,13 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
                   <input 
                     type="text" 
-                    id="name" 
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
                     placeholder="Tu nombre"
+                    required
                   />
                 </div>
                 
@@ -102,9 +152,13 @@ const Contact = () => {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input 
                     type="email" 
-                    id="email" 
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
                     placeholder="tu@email.com"
+                    required
                   />
                 </div>
               </div>
@@ -113,28 +167,49 @@ const Contact = () => {
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
                 <input 
                   type="text" 
-                  id="subject" 
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
                   placeholder="¿En qué podemos ayudarte?"
+                  required
                 />
               </div>
               
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
                 <textarea 
-                  id="message" 
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={5}
                   className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
                   placeholder="Escribe tu mensaje aquí..."
+                  required
                 ></textarea>
               </div>
               
               <button 
                 type="submit" 
-                className="w-full bg-black text-white py-3 px-4 rounded-md font-semibold hover:bg-gold hover:text-black transition-colors duration-300"
+                className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
+                  status === 'sending' 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-black text-white hover:bg-gold hover:text-black'
+                }`}
+                disabled={status === 'sending'}
               >
-                Enviar mensaje
+                {status === 'sending' ? 'Enviando...' : 'Enviar mensaje'}
               </button>
+
+              {status === 'success' && (
+                <p className="mt-4 text-green-600 text-center">¡Mensaje enviado con éxito!</p>
+              )}
+              
+              {status === 'error' && (
+                <p className="mt-4 text-red-600 text-center">Error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
+              )}
             </form>
           </div>
         </div>

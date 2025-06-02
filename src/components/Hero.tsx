@@ -1,5 +1,4 @@
-import React from 'react';
-import heroImage from '../assets/images/hero/hero-bg.webp';
+import heroImage from '../assets/images/hero/hero.png';
 
 const Hero = () => {
   const scrollToPlans = () => {

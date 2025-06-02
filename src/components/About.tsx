@@ -1,6 +1,5 @@
-import React from 'react';
 import { Target, Award, Heart } from 'lucide-react';
-import aboutImage from '../assets/images/about/about-gym.webp';
+import aboutImage from '../assets/images/about/about.png';
 
 const About = () => {
   return (

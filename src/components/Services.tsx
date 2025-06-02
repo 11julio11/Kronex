@@ -1,5 +1,4 @@
-import React from 'react';
-import { Dumbbell, Users, Apple, Heart, Activity, Droplets } from 'lucide-react';
+import { Dumbbell, Users, Apple, Activity, Droplets } from 'lucide-react';
 
 const Services = () => {
   const servicesList = [
