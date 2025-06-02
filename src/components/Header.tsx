@@ -9,6 +9,7 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
