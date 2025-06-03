@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import gallery1 from '../assets/images/gallery/entrenamiento_funcional.jpeg';
+import gallery1 from '../assets/images/gallery/entranamiento_funcional.jpeg';
 import gallery2 from '../assets/images/gallery/area_de_pesas.jpeg';
 import gallery3 from '../assets/images/gallery/clases_de_spinning.jpeg';
 import gallery4 from '../assets/images/gallery/area_de_cardio.jpeg';
