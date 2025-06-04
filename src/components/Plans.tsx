@@ -1,12 +1,19 @@
-import { Check, X } from 'lucide-react';
+import { useState } from 'react';
+import { Check, X, Loader2 } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const Plans = () => {
+  const [loading, setLoading] = useState<string | null>(null);
+
   const plans = [
     {
       name: 'Básico',
       price: '49',
       period: 'mes',
       description: 'Perfecto para comenzar tu viaje fitness',
+      priceId: 'price_basic',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso a clases grupales (2 por semana)', included: true },
@@ -16,7 +23,7 @@ const Plans = () => {
         { name: 'Asesoramiento nutricional', included: false },
         { name: 'Acceso a spa y recuperación', included: false },
       ],
-      buttonText: 'Contactar',
+      buttonText: 'Suscribirse',
       popular: false
     },
     {
@@ -24,6 +31,7 @@ const Plans = () => {
       price: '89',
       period: 'mes',
       description: 'Nuestra membresía más popular',
+      priceId: 'price_premium',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
@@ -33,7 +41,7 @@ const Plans = () => {
         { name: 'Asesoramiento nutricional básico', included: true },
         { name: 'Acceso a spa y recuperación', included: false },
       ],
-      buttonText: 'Contactar',
+      buttonText: 'Suscribirse',
       popular: true
     },
     {
@@ -41,6 +49,7 @@ const Plans = () => {
       price: '149',
       period: 'mes',
       description: 'Experiencia fitness sin límites',
+      priceId: 'price_vip',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
@@ -50,13 +59,40 @@ const Plans = () => {
         { name: 'Plan nutricional completo', included: true },
         { name: 'Acceso ilimitado a spa y recuperación', included: true },
       ],
-      buttonText: 'Contactar',
+      buttonText: 'Suscribirse',
       popular: false
     },
   ];
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  const handleSubscription = async (priceId: string) => {
+    try {
+      setLoading(priceId);
+      const stripe = await stripePromise;
+      
+      if (!stripe) throw new Error('Stripe failed to load');
+
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({ priceId }),
+      });
+
+      const { sessionId } = await response.json();
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        console.error('Error:', error);
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.');
+    } finally {
+      setLoading(null);
+    }
   };
 
   return (
@@ -111,14 +147,22 @@ const Plans = () => {
                 </ul>
                 
                 <button 
-                  onClick={scrollToContact}
+                  onClick={() => handleSubscription(plan.priceId)}
+                  disabled={loading === plan.priceId}
                   className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 transform hover:translate-y-[-2px] ${
                     plan.popular 
                       ? 'bg-gold text-black hover:bg-yellow-500' 
                       : 'bg-gray-900 text-white hover:bg-black'
-                  }`}
+                  } disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center`}
                 >
-                  {plan.buttonText}
+                  {loading === plan.priceId ? (
+                    <>
+                      <Loader2 className="animate-spin h-5 w-5 mr-2" />
+                      Procesando...
+                    </>
+                  ) : (
+                    plan.buttonText
+                  )}
                 </button>
               </div>
             </div>
