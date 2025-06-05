@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Check, X, Loader2 } from 'lucide-react';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+import { products } from '../stripe-config';
+import { createCheckoutSession } from '../lib/stripe';
 
 const Plans = () => {
   const [loading, setLoading] = useState<string | null>(null);
@@ -12,8 +11,8 @@ const Plans = () => {
       name: 'Básico',
       price: '49',
       period: 'mes',
-      description: 'Perfecto para comenzar tu viaje fitness',
-      priceId: 'price_basic',
+      description: products.basic.description,
+      priceId: products.basic.priceId,
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso a clases grupales (2 por semana)', included: true },
@@ -30,8 +29,8 @@ const Plans = () => {
       name: 'Premium',
       price: '89',
       period: 'mes',
-      description: 'Nuestra membresía más popular',
-      priceId: 'price_premium',
+      description: products.premium.description,
+      priceId: products.premium.priceId,
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
@@ -48,8 +47,8 @@ const Plans = () => {
       name: 'VIP',
       price: '149',
       period: 'mes',
-      description: 'Experiencia fitness sin límites',
-      priceId: 'price_vip',
+      description: products.vip.description,
+      priceId: products.vip.priceId,
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
@@ -67,26 +66,7 @@ const Plans = () => {
   const handleSubscription = async (priceId: string) => {
     try {
       setLoading(priceId);
-      const stripe = await stripePromise;
-      
-      if (!stripe) throw new Error('Stripe failed to load');
-
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({ priceId }),
-      });
-
-      const { sessionId } = await response.json();
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        console.error('Error:', error);
-        throw new Error(error.message);
-      }
+      await createCheckoutSession(priceId);
     } catch (error) {
       console.error('Error:', error);
       alert('Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.');
