@@ -11,7 +11,6 @@ import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingButton from './components/FloatingButton';
-import TestConnection from './components/TestConnection';
 
 function App() {
   useEffect(() => {
@@ -32,8 +31,6 @@ function App() {
       <Contact />
       <Footer />
       <FloatingButton />
-      {/* Componente de prueba - remover en producción */}
-      <TestConnection />
     </div>
   );
 }

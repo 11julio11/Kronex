@@ -1,29 +1,12 @@
-import { useState } from 'react';
-import { Check, X, Loader2 } from 'lucide-react';
-import { createCheckoutSession } from '../lib/stripe';
+import { Check, X } from 'lucide-react';
 
 const Plans = () => {
-  const [loading, setLoading] = useState<string | null>(null);
-
-  const handleSubscription = async (priceId: string) => {
-    try {
-      setLoading(priceId);
-      await createCheckoutSession(priceId);
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.');
-    } finally {
-      setLoading(null);
-    }
-  };
-
   const plans = [
     {
       name: 'Básico',
       price: '49',
       period: 'mes',
       description: 'Perfecto para comenzar tu viaje fitness',
-      priceId: 'price_1RWU9SGa09S0NWcnXF0MVbBF',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso a clases grupales (2 por semana)', included: true },
@@ -33,7 +16,7 @@ const Plans = () => {
         { name: 'Asesoramiento nutricional', included: false },
         { name: 'Acceso a spa y recuperación', included: false },
       ],
-      buttonText: 'Suscribirse',
+      buttonText: 'Contactar',
       popular: false
     },
     {
@@ -41,17 +24,16 @@ const Plans = () => {
       price: '89',
       period: 'mes',
       description: 'Nuestra membresía más popular',
-      priceId: 'price_1RWUAgGa09S0NWcnTf8nYqnf',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
-        { name: 'Asesoramiento inicial', included: true },
+        { name: 'Asesoramiento inicial y seguimiento', included: true },
         { name: 'Acceso a vestuarios y duchas', included: true },
-        { name: 'Entrenamiento personalizado (2 sesiones/mes)', included: true },
+        { name: 'Entrenamiento personalizado (1 por semana)', included: true },
         { name: 'Asesoramiento nutricional básico', included: true },
         { name: 'Acceso a spa y recuperación', included: false },
       ],
-      buttonText: 'Suscribirse',
+      buttonText: 'Contactar',
       popular: true
     },
     {
@@ -59,105 +41,84 @@ const Plans = () => {
       price: '149',
       period: 'mes',
       description: 'Experiencia fitness sin límites',
-      priceId: 'price_1RWUBvGa09S0NWcn2zh4Tqfz',
       features: [
         { name: 'Acceso a área de musculación', included: true },
         { name: 'Acceso ilimitado a clases grupales', included: true },
-        { name: 'Asesoramiento inicial', included: true },
-        { name: 'Acceso a vestuarios y duchas', included: true },
-        { name: 'Entrenamiento personalizado ilimitado', included: true },
-        { name: 'Asesoramiento nutricional completo', included: true },
-        { name: 'Acceso a spa y recuperación', included: true },
+        { name: 'Asesoramiento continuo y seguimiento', included: true },
+        { name: 'Acceso a vestuarios y duchas premium', included: true },
+        { name: 'Entrenamiento personalizado (3 por semana)', included: true },
+        { name: 'Plan nutricional completo', included: true },
+        { name: 'Acceso ilimitado a spa y recuperación', included: true },
       ],
-      buttonText: 'Suscribirse',
+      buttonText: 'Contactar',
       popular: false
-    }
+    },
   ];
+
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section id="plans" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Elige tu Plan
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Encuentra la membresía perfecta para tus objetivos fitness
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">NUESTROS PLANES</h2>
+          <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Elige el plan que mejor se adapte a tus objetivos y necesidades. Todos nuestros planes incluyen el compromiso de ayudarte a alcanzar la mejor versión de ti mismo.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 justify-center">
           {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`relative bg-white rounded-2xl shadow-xl border-2 transition-all duration-300 hover:shadow-2xl ${
+            <div 
+              key={index} 
+              className={`bg-white rounded-lg overflow-hidden border transform transition-all duration-500 hover:scale-105 ${
                 plan.popular 
-                  ? 'border-gold scale-105 transform' 
-                  : 'border-gray-200 hover:border-gold'
-              }`}
+                  ? 'border-gold shadow-xl md:scale-105' 
+                  : 'border-gray-200 shadow-lg hover:shadow-xl'
+              } flex flex-col max-w-sm w-full mx-auto md:mx-0`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gold text-black px-6 py-2 rounded-full text-sm font-semibold">
-                    Más Popular
-                  </span>
+                <div className="bg-gold text-black py-2 px-4 text-center text-sm font-semibold">
+                  MÁS POPULAR
                 </div>
               )}
-
+              
               <div className="p-8">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    {plan.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {plan.description}
-                  </p>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-5xl font-bold text-gray-900">
-                      ${plan.price}
-                    </span>
-                    <span className="text-xl text-gray-600 ml-2">
-                      /{plan.period}
-                    </span>
-                  </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-gray-600 mb-6">{plan.description}</p>
+                
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-gray-900">${plan.price}</span>
+                  <span className="text-gray-600">/{plan.period}</span>
                 </div>
-
+                
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
+                    <li key={featureIndex} className="flex items-start">
                       {feature.included ? (
-                        <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                        <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
                       ) : (
-                        <X className="h-5 w-5 text-red-500 mr-3 flex-shrink-0" />
+                        <X className="h-5 w-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" />
                       )}
-                      <span className={`text-sm ${
-                        feature.included ? 'text-gray-900' : 'text-gray-500'
-                      }`}>
+                      <span className={feature.included ? "text-gray-700" : "text-gray-400"}>
                         {feature.name}
                       </span>
                     </li>
                   ))}
                 </ul>
-
+                
                 <button 
-                  onClick={() => handleSubscription(plan.priceId)}
-                  disabled={loading === plan.priceId}
-                  className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
-                    plan.popular
-                      ? 'bg-gold text-black hover:bg-yellow-500'
-                      : 'bg-black text-white hover:bg-gray-800'
-                  } ${
-                    loading === plan.priceId ? 'opacity-50 cursor-not-allowed' : ''
+                  onClick={scrollToContact}
+                  className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 transform hover:translate-y-[-2px] ${
+                    plan.popular 
+                      ? 'bg-gold text-black hover:bg-yellow-500' 
+                      : 'bg-gray-900 text-white hover:bg-black'
                   }`}
                 >
-                  {loading === plan.priceId ? (
-                    <div className="flex items-center justify-center">
-                      <Loader2 className="animate-spin h-5 w-5 mr-2" />
-                      <span>Procesando...</span>
-                    </div>
-                  ) : (
-                    plan.buttonText
-                  )}
+                  {plan.buttonText}
                 </button>
               </div>
             </div>
