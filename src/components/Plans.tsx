@@ -17,7 +17,7 @@ const Plans = () => {
     }
   };
 
-  const plans = [
+  const plan = [
     {
       name: 'Básico',
       price: '49',
