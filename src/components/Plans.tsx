@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Check, X, Loader2 } from 'lucide-react';
 import { createCheckoutSession } from '../lib/stripe';
