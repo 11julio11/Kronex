@@ -10,6 +10,7 @@ const About = () => {
           <div className="w-20 h-1 bg-gold mx-auto"></div>
         </div>
 
+
         <div className="flex flex-col md:flex-row gap-10 items-center">
           <div className="md:w-1/2">
             <div className="relative">
@@ -35,6 +36,7 @@ const About = () => {
               y un ambiente diseñado para motivar e inspirar a nuestros miembros a alcanzar sus 
               objetivos de bienestar físico.
             </p>
+
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-900 p-6 rounded-lg">
