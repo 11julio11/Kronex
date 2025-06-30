@@ -24,19 +24,22 @@ const Contact = () => {
     setStatus('sending');
 
     try {
-      await emailjs.send(
-        'service_0awzw2m', // Replace with your EmailJS service ID
-        'template_42jj02p', // Replace with your EmailJS template ID
+      // Inicializar EmailJS
+      emailjs.init('bGIPGmIuz_2uxmX2r');
+      
+      const result = await emailjs.send(
+        'service_0awzw2m',
+        'template_42jj02p',
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'romerojesusdavid76@gmail.com' // Replace with your email
-        },
-        'bGIPGmIuz_2uxmX2r' // Replace with your EmailJS public key
+          to_email: 'romerojesusdavid76@gmail.com'
+        }
       );
 
+      console.log('EmailJS result:', result);
       setStatus('success');
       setFormData({
         name: '',
@@ -46,8 +49,8 @@ const Contact = () => {
       });
 
       setTimeout(() => setStatus('idle'), 5000);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+      console.error('EmailJS error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }

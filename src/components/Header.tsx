@@ -37,6 +37,7 @@ const Header = () => {
     { name: 'Inicio', id: 'home' },
     { name: 'Nosotros', id: 'about' },
     { name: 'Servicios', id: 'services' },
+    { name: 'Ejercicios', id: 'exercises' },
     { name: 'Planes', id: 'plans' },
     { name: 'Entrenadores', id: 'trainers' },
     { name: 'Testimonios', id: 'testimonials' },
