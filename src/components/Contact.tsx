@@ -26,13 +26,13 @@ const Contact = () => {
     try {
       await emailjs.send(
         'service_0awzw2m', // Replace with your EmailJS service ID
-        'template_42jj02p', // Replace with your EmailJS template ID
+        'template_y5p4fno', // Replace with your EmailJS template ID
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'romerojesusdavid76@gmail.com' // Replace with your email
+          //to_email: 'romerojesusdavid76@gmail.com' // Replace with your email
         },
         'bGIPGmIuz_2uxmX2r' // Replace with your EmailJS public key
       );
