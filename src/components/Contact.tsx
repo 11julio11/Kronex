@@ -29,13 +29,13 @@ const Contact = () => {
       
       const result = await emailjs.send(
         'service_0awzw2m',
-        'template_42jj02p',
+        'template_y5p4fno',
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'romerojesusdavid76@gmail.com'
+          //to_email: 'romerojesusdavid76@gmail.com'
         }
       );
 
