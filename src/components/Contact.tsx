@@ -24,31 +24,47 @@ const Contact = () => {
     setStatus('sending');
 
     try {
-      // Inicializar EmailJS
-      emailjs.init('bGIPGmIuz_2uxmX2r');
+      // Configuración de EmailJS
+      const serviceId = 'service_0awzw2m';
+      const templateId = 'template_42jj02p';
+      const publicKey = 'bGIPGmIuz_2uxmX2r';
+
+      // Inicializar EmailJS con la clave pública
+      emailjs.init(publicKey);
       
+      // Preparar los parámetros del template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'romerojesusdavid76@gmail.com',
+        reply_to: formData.email
+      };
+
+      console.log('Enviando email con parámetros:', templateParams);
+
       const result = await emailjs.send(
-        'service_0awzw2m',
-        'template_42jj02p',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'romerojesusdavid76@gmail.com'
-        }
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
       );
 
       console.log('EmailJS result:', result);
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-
-      setTimeout(() => setStatus('idle'), 5000);
+      
+      if (result.status === 200) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error('Error en el envío');
+      }
     } catch (error) {
       console.error('EmailJS error:', error);
       setStatus('error');
@@ -207,11 +223,15 @@ const Contact = () => {
               </button>
 
               {status === 'success' && (
-                <p className="mt-4 text-green-600 text-center">¡Mensaje enviado con éxito!</p>
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                  ¡Mensaje enviado con éxito! Te responderemos pronto.
+                </div>
               )}
               
               {status === 'error' && (
-                <p className="mt-4 text-red-600 text-center">Error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                  Error al enviar el mensaje. Por favor, verifica tu conexión e inténtalo de nuevo.
+                </div>
               )}
             </form>
           </div>
