@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const [state, handleSubmit] = useForm("xdkogkqw");
   const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({
     name: '',
@@ -22,17 +25,53 @@ const Contact = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+    try {
+      // Configuración de EmailJS
+      const serviceId = 'service_0awzw2m';
+      const templateId = 'template_42jj02p';
+      const publicKey = 'bGIPGmIuz_2uxmX2r';
+
+      // Inicializar EmailJS con la clave pública
+      emailjs.init(publicKey);
+      
+      // Preparar los parámetros del template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'romerojesusdavid76@gmail.com',
+        reply_to: formData.email
+      };
+
+      console.log('Enviando email con parámetros:', templateParams);
+
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('EmailJS result:', result);
+      
+      if (result.status === 200) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error('Error en el envío');
+      }
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
-    }, 1000);
+    }
   };
 
   return (
@@ -128,6 +167,7 @@ const Contact = () => {
                     placeholder="Tu nombre"
                     required
                   />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
                 
                 <div>
@@ -142,6 +182,7 @@ const Contact = () => {
                     placeholder="tu@email.com"
                     required
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
               </div>
               
@@ -157,6 +198,7 @@ const Contact = () => {
                   placeholder="¿En qué podemos ayudarte?"
                   required
                 />
+                <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               </div>
               
               <div className="mb-6">
@@ -171,6 +213,7 @@ const Contact = () => {
                   placeholder="Escribe tu mensaje aquí..."
                   required
                 ></textarea>
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </div>
               
               <button 
