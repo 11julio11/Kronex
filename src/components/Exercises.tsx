@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Play, Clock, Target, TrendingUp } from 'lucide-react';
+import { Play, Clock, Target, TrendingUp, X, Users, BarChart3 } from 'lucide-react';
 
 const Exercises = () => {
   const [selectedCategory, setSelectedCategory] = useState('todos');
+  const [selectedExercise, setSelectedExercise] = useState<number | null>(null);
 
   const categories = [
     { id: 'todos', name: 'Todos' },
@@ -23,6 +24,22 @@ const Exercises = () => {
       description: 'Ejercicio fundamental para el desarrollo del pecho y la fuerza del tren superior.',
       image: 'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Aumenta la fuerza del pecho', 'Mejora la estabilidad', 'Desarrolla masa muscular'],
+      videoUrl: 'https://www.youtube.com/embed/rT7DgCr-3pg',
+      instructions: [
+        'Acuéstate en el banco con los pies firmemente apoyados en el suelo',
+        'Agarra la barra con las manos separadas al ancho de los hombros',
+        'Baja la barra controladamente hasta tocar el pecho',
+        'Empuja la barra hacia arriba hasta extender completamente los brazos',
+        'Mantén la espalda pegada al banco durante todo el movimiento'
+      ],
+      sets: '4 series',
+      reps: '8-12 repeticiones',
+      rest: '2-3 minutos entre series',
+      tips: [
+        'Mantén los omóplatos retraídos',
+        'No rebotes la barra en el pecho',
+        'Controla la respiración: inhala al bajar, exhala al subir'
+      ]
     },
     {
       id: 2,
@@ -34,6 +51,22 @@ const Exercises = () => {
       description: 'El rey de los ejercicios para el tren inferior, trabaja múltiples grupos musculares.',
       image: 'https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Fortalece piernas', 'Mejora la postura', 'Quema muchas calorías'],
+      videoUrl: 'https://www.youtube.com/embed/Dy28eq2PjcM',
+      instructions: [
+        'Colócate de pie con los pies separados al ancho de los hombros',
+        'Mantén el pecho erguido y la mirada al frente',
+        'Baja flexionando las rodillas como si fueras a sentarte',
+        'Desciende hasta que los muslos estén paralelos al suelo',
+        'Empuja con los talones para volver a la posición inicial'
+      ],
+      sets: '3-4 series',
+      reps: '12-15 repeticiones',
+      rest: '1-2 minutos entre series',
+      tips: [
+        'Las rodillas no deben sobrepasar las puntas de los pies',
+        'Mantén el peso en los talones',
+        'Desciende controladamente'
+      ]
     },
     {
       id: 3,
@@ -45,6 +78,22 @@ const Exercises = () => {
       description: 'Entrenamiento de alta intensidad que maximiza la quema de grasa en poco tiempo.',
       image: 'https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Quema grasa rápidamente', 'Mejora resistencia', 'Acelera metabolismo'],
+      videoUrl: 'https://www.youtube.com/embed/ml6cT4AZdqI',
+      instructions: [
+        'Calentamiento de 5 minutos con movimientos dinámicos',
+        'Alterna 30 segundos de alta intensidad con 30 segundos de descanso',
+        'Incluye ejercicios como burpees, jumping jacks, mountain climbers',
+        'Mantén la intensidad alta durante los intervalos de trabajo',
+        'Enfriamiento de 5 minutos con estiramientos'
+      ],
+      sets: '8-12 intervalos',
+      reps: '30 seg trabajo / 30 seg descanso',
+      rest: 'Según protocolo',
+      tips: [
+        'Mantén una buena hidratación',
+        'Escucha a tu cuerpo',
+        'Progresa gradualmente en intensidad'
+      ]
     },
     {
       id: 4,
@@ -56,6 +105,22 @@ const Exercises = () => {
       description: 'Ejercicio compuesto que trabaja la cadena posterior y mejora la fuerza funcional.',
       image: 'https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Fortalece espalda baja', 'Mejora postura', 'Aumenta fuerza general'],
+      videoUrl: 'https://www.youtube.com/embed/ytGaGIn3SjE',
+      instructions: [
+        'Colócate frente a la barra con los pies al ancho de las caderas',
+        'Agarra la barra con las manos separadas al ancho de los hombros',
+        'Mantén la espalda recta y el pecho hacia afuera',
+        'Levanta la barra extendiendo las caderas y rodillas simultáneamente',
+        'Mantén la barra cerca del cuerpo durante todo el movimiento'
+      ],
+      sets: '4-5 series',
+      reps: '5-8 repeticiones',
+      rest: '3-4 minutos entre series',
+      tips: [
+        'Mantén la barra pegada al cuerpo',
+        'No redondees la espalda',
+        'Activa el core durante todo el movimiento'
+      ]
     },
     {
       id: 5,
@@ -67,6 +132,22 @@ const Exercises = () => {
       description: 'Ejercicio funcional que combina fuerza y cardio en un solo movimiento.',
       image: 'https://images.pexels.com/photos/4164766/pexels-photo-4164766.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Ejercicio completo', 'Mejora coordinación', 'Alta quema calórica'],
+      videoUrl: 'https://www.youtube.com/embed/TU8QYVW0gDU',
+      instructions: [
+        'Comienza de pie con los pies al ancho de los hombros',
+        'Baja a posición de cuclillas y coloca las manos en el suelo',
+        'Salta hacia atrás para quedar en posición de plancha',
+        'Realiza una flexión (opcional)',
+        'Salta hacia adelante y luego salta verticalmente con los brazos arriba'
+      ],
+      sets: '3-4 series',
+      reps: '10-15 repeticiones',
+      rest: '1-2 minutos entre series',
+      tips: [
+        'Mantén el core activado',
+        'Aterriza suavemente',
+        'Modifica la intensidad según tu nivel'
+      ]
     },
     {
       id: 6,
@@ -78,6 +159,22 @@ const Exercises = () => {
       description: 'Secuencia fluida de posturas que mejora flexibilidad y reduce el estrés.',
       image: 'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Aumenta flexibilidad', 'Reduce estrés', 'Mejora equilibrio'],
+      videoUrl: 'https://www.youtube.com/embed/v7AYKMP6rOE',
+      instructions: [
+        'Comienza en posición de montaña (Tadasana)',
+        'Fluye a través de saludos al sol',
+        'Incluye posturas de pie como guerrero I y II',
+        'Transiciona a posturas sentadas y torsiones',
+        'Termina con relajación en Savasana'
+      ],
+      sets: 'Flujo continuo',
+      reps: '5-8 respiraciones por postura',
+      rest: 'Respiración consciente',
+      tips: [
+        'Respira profundamente',
+        'No fuerces las posturas',
+        'Escucha tu cuerpo'
+      ]
     },
     {
       id: 7,
@@ -89,6 +186,22 @@ const Exercises = () => {
       description: 'Clase de ciclismo indoor con música motivadora y diferentes intensidades.',
       image: 'https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Mejora resistencia cardiovascular', 'Tonifica piernas', 'Bajo impacto'],
+      videoUrl: 'https://www.youtube.com/embed/4jJWoqQUWjY',
+      instructions: [
+        'Ajusta la bicicleta a tu altura correcta',
+        'Comienza con un calentamiento suave de 5 minutos',
+        'Alterna entre diferentes intensidades y resistencias',
+        'Incluye sprints, subidas y recuperaciones',
+        'Termina con enfriamiento y estiramientos'
+      ],
+      sets: 'Clase estructurada',
+      reps: 'Intervalos variados',
+      rest: 'Según protocolo de clase',
+      tips: [
+        'Mantén una buena postura',
+        'Hidratate constantemente',
+        'Ajusta la resistencia según tu nivel'
+      ]
     },
     {
       id: 8,
@@ -100,6 +213,22 @@ const Exercises = () => {
       description: 'Movimientos que imitan actividades de la vida diaria para mejorar la funcionalidad.',
       image: 'https://images.pexels.com/photos/4164527/pexels-photo-4164527.jpeg?auto=compress&cs=tinysrgb&w=800',
       benefits: ['Mejora movimientos diarios', 'Aumenta estabilidad', 'Previene lesiones'],
+      videoUrl: 'https://www.youtube.com/embed/vc1E5CfRfos',
+      instructions: [
+        'Calentamiento dinámico de 10 minutos',
+        'Circuito de ejercicios multiplanares',
+        'Incluye movimientos de empuje, tracción y rotación',
+        'Usa equipamiento variado: kettlebells, TRX, balones medicinales',
+        'Enfriamiento con movilidad articular'
+      ],
+      sets: '3-4 circuitos',
+      reps: '45 seg trabajo / 15 seg descanso',
+      rest: '2 minutos entre circuitos',
+      tips: [
+        'Prioriza la técnica sobre la velocidad',
+        'Mantén el core activado',
+        'Progresa gradualmente en complejidad'
+      ]
     },
   ];
 
@@ -115,6 +244,18 @@ const Exercises = () => {
       default: return 'text-gray-600 bg-gray-100';
     }
   };
+
+  const openExerciseModal = (exerciseId: number) => {
+    setSelectedExercise(exerciseId);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeExerciseModal = () => {
+    setSelectedExercise(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const selectedExerciseData = selectedExercise ? exercises.find(ex => ex.id === selectedExercise) : null;
 
   return (
     <section id="exercises" className="py-20 bg-gray-50">
@@ -208,7 +349,10 @@ const Exercises = () => {
                   </ul>
                 </div>
                 
-                <button className="w-full bg-black text-white py-2 px-4 rounded-md font-semibold hover:bg-gold hover:text-black transition-colors duration-300">
+                <button 
+                  onClick={() => openExerciseModal(exercise.id)}
+                  className="w-full bg-black text-white py-2 px-4 rounded-md font-semibold hover:bg-gold hover:text-black transition-colors duration-300"
+                >
                   Ver detalles
                 </button>
               </div>
@@ -243,6 +387,136 @@ const Exercises = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal de detalles del ejercicio */}
+      {selectedExercise && selectedExerciseData && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[95vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                    {selectedExerciseData.name}
+                  </h2>
+                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center">
+                      <Clock className="h-4 w-4 mr-1" />
+                      <span>{selectedExerciseData.duration}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="h-4 w-4 mr-1" />
+                      <span>{selectedExerciseData.difficulty}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <BarChart3 className="h-4 w-4 mr-1" />
+                      <span>{selectedExerciseData.sets}</span>
+                    </div>
+                  </div>
+                </div>
+                <button 
+                  onClick={closeExerciseModal}
+                  className="text-gray-500 hover:text-gray-700 p-2"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Video */}
+                <div>
+                  <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                    <iframe
+                      src={selectedExerciseData.videoUrl}
+                      title={selectedExerciseData.name}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  
+                  {/* Información rápida */}
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="bg-gray-50 p-4 rounded-lg text-center">
+                      <div className="font-semibold text-gray-900">{selectedExerciseData.sets}</div>
+                      <div className="text-sm text-gray-600">Series</div>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg text-center">
+                      <div className="font-semibold text-gray-900">{selectedExerciseData.reps}</div>
+                      <div className="text-sm text-gray-600">Repeticiones</div>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg text-center">
+                      <div className="font-semibold text-gray-900">{selectedExerciseData.rest}</div>
+                      <div className="text-sm text-gray-600">Descanso</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Información detallada */}
+                <div>
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Descripción</h3>
+                    <p className="text-gray-700">{selectedExerciseData.description}</p>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Músculos trabajados</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedExerciseData.muscles.map((muscle, index) => (
+                        <span key={index} className="bg-gold text-black px-3 py-1 rounded-full text-sm font-medium">
+                          {muscle}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Beneficios</h3>
+                    <ul className="space-y-2">
+                      {selectedExerciseData.benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-center text-gray-700">
+                          <span className="w-2 h-2 bg-gold rounded-full mr-3"></span>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+                {/* Instrucciones */}
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Instrucciones paso a paso</h3>
+                  <ol className="space-y-3">
+                    {selectedExerciseData.instructions.map((instruction, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="bg-gold text-black rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">
+                          {index + 1}
+                        </span>
+                        <span className="text-gray-700">{instruction}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                
+                {/* Consejos */}
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Consejos importantes</h3>
+                  <ul className="space-y-3">
+                    {selectedExerciseData.tips.map((tip, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-gold mr-3 mt-1">💡</span>
+                        <span className="text-gray-700">{tip}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
