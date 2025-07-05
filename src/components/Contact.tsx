@@ -26,8 +26,8 @@ const Contact = () => {
     try {
       // Configuración de EmailJS
       const serviceId = 'service_0awzw2m';
-      const templateId = 'template_42jj02p';
-      const publicKey = 'bGIPGmIuz_2uxmX2r';
+      const templateId = 'template_p14lczi';
+      const publicKey = 'F42z169BG2fr3058x';
 
       // Inicializar EmailJS con la clave pública
       emailjs.init(publicKey);
