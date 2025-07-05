@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [state, handleSubmit] = useForm("xdkogkqw"); // Reemplaza con tu Form ID de Formspree
+  const [state, handleSubmit] = useForm("xdkogkqw");
+  const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -217,22 +219,22 @@ const Contact = () => {
               <button 
                 type="submit" 
                 className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
-                  state.submitting 
+                  status === 'sending' 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-black text-white hover:bg-gold hover:text-black'
                 }`}
-                disabled={state.submitting}
+                disabled={status === 'sending'}
               >
-                {state.submitting ? 'Enviando...' : 'Enviar mensaje'}
+                {status === 'sending' ? 'Enviando...' : 'Enviar mensaje'}
               </button>
 
-              {state.succeeded && (
+              {status === 'success' && (
                 <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
                   ¡Mensaje enviado con éxito! Te responderemos pronto.
                 </div>
               )}
               
-              {state.errors.length > 0 && (
+              {status === 'error' && (
                 <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
                   Error al enviar el mensaje. Por favor, verifica los campos e inténtalo de nuevo.
                 </div>
