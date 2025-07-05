@@ -4,7 +4,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [state, handleSubmit] = useForm("xdkogkqw");
+  const [state] = useForm("xdkogkqw");
   const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({
     name: '',
