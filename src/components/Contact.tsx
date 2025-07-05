@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact = () => {
+  const [state, handleSubmit] = useForm("xdkogkqw"); // Reemplaza con tu Form ID de Formspree
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,56 +19,16 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
-
-    try {
-      // Configuración de EmailJS
-      const serviceId = 'service_0awzw2m';
-      const templateId = 'template_42jj02p';
-      const publicKey = 'bGIPGmIuz_2uxmX2r';
-
-      // Inicializar EmailJS con la clave pública
-      emailjs.init(publicKey);
-      
-      // Preparar los parámetros del template
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'romerojesusdavid76@gmail.com',
-        reply_to: formData.email
-      };
-
-      console.log('Enviando email con parámetros:', templateParams);
-
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
-
-      console.log('EmailJS result:', result);
-      
-      if (result.status === 200) {
-        setStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        throw new Error('Error en el envío');
-      }
-    } catch (error) {
-      console.error('EmailJS error:', error);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
+    await handleSubmit(e);
+    if (state.succeeded) {
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     }
   };
 
@@ -149,7 +109,7 @@ const Contact = () => {
           </div>
           
           <div className="lg:w-1/2">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
+            <form onSubmit={onSubmit} className="bg-white rounded-lg shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Envíanos un mensaje</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -165,6 +125,7 @@ const Contact = () => {
                     placeholder="Tu nombre"
                     required
                   />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
                 
                 <div>
@@ -179,6 +140,7 @@ const Contact = () => {
                     placeholder="tu@email.com"
                     required
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
               </div>
               
@@ -194,6 +156,7 @@ const Contact = () => {
                   placeholder="¿En qué podemos ayudarte?"
                   required
                 />
+                <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               </div>
               
               <div className="mb-6">
@@ -208,29 +171,30 @@ const Contact = () => {
                   placeholder="Escribe tu mensaje aquí..."
                   required
                 ></textarea>
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </div>
               
               <button 
                 type="submit" 
                 className={`w-full py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
-                  status === 'sending' 
+                  state.submitting 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-black text-white hover:bg-gold hover:text-black'
                 }`}
-                disabled={status === 'sending'}
+                disabled={state.submitting}
               >
-                {status === 'sending' ? 'Enviando...' : 'Enviar mensaje'}
+                {state.submitting ? 'Enviando...' : 'Enviar mensaje'}
               </button>
 
-              {status === 'success' && (
+              {state.succeeded && (
                 <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
                   ¡Mensaje enviado con éxito! Te responderemos pronto.
                 </div>
               )}
               
-              {status === 'error' && (
+              {state.errors.length > 0 && (
                 <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                  Error al enviar el mensaje. Por favor, verifica tu conexión e inténtalo de nuevo.
+                  Error al enviar el mensaje. Por favor, verifica los campos e inténtalo de nuevo.
                 </div>
               )}
             </form>
