@@ -18,78 +18,11 @@ const Contact = () => {
     }));
   };
 
-  // OPCIÓN 1: Formspree (Recomendado - Más fácil)
-  const handleFormspreeSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        throw new Error('Error en el envío');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
-    }
-  };
-
-  // OPCIÓN 2: Web3Forms (Sin registro)
-  const handleWeb3FormsSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    const formDataWeb3 = new FormData();
-    formDataWeb3.append('access_key', 'YOUR_ACCESS_KEY'); // Obtener de web3forms.com
-    formDataWeb3.append('name', formData.name);
-    formDataWeb3.append('email', formData.email);
-    formDataWeb3.append('subject', formData.subject);
-    formDataWeb3.append('message', formData.message);
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formDataWeb3
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        throw new Error('Error en el envío');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
-    }
-  };
-
-  // OPCIÓN 3: Netlify Forms (Si usas Netlify)
   const handleNetlifySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
 
+    // Crear FormData para Netlify
     const formDataNetlify = new FormData();
     formDataNetlify.append('form-name', 'contact');
     formDataNetlify.append('name', formData.name);
@@ -117,31 +50,6 @@ const Contact = () => {
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
-
-  // OPCIÓN 4: Mailto (Básico pero funcional)
-  const handleMailtoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const subject = encodeURIComponent(`${formData.subject} - Contacto desde EliteGym`);
-    const body = encodeURIComponent(
-      `Nombre: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Asunto: ${formData.subject}\n\n` +
-      `Mensaje:\n${formData.message}\n\n` +
-      `---\n` +
-      `Enviado desde el formulario de contacto de EliteGym`
-    );
-    
-    const mailtoLink = `mailto:info@elitegym.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
-    
-    setStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setStatus('idle'), 3000);
-  };
-
-  // Usar la opción que prefieras cambiando la función en onSubmit
-  const onSubmit = handleMailtoSubmit; // Cambiar por la opción deseada
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -220,16 +128,16 @@ const Contact = () => {
           </div>
           
           <div className="lg:w-1/2">
-            {/* Formulario para Netlify (agregar data-netlify="true" si usas Netlify) */}
+            {/* Formulario Netlify */}
             <form 
-              onSubmit={onSubmit} 
+              onSubmit={handleNetlifySubmit} 
               className="bg-white rounded-lg shadow-lg p-8"
               name="contact"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
             >
-              {/* Campo oculto para Netlify */}
+              {/* Campos ocultos para Netlify */}
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="bot-field" />
               
@@ -306,14 +214,30 @@ const Contact = () => {
               </button>
 
               {status === 'success' && (
-                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                  ¡Mensaje enviado con éxito! Te responderemos pronto.
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold">¡Mensaje enviado con éxito!</p>
+                      <p className="text-sm">Te responderemos pronto a tu email.</p>
+                    </div>
+                  </div>
                 </div>
               )}
               
               {status === 'error' && (
-                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                  Error al enviar el mensaje. Por favor, inténtalo de nuevo.
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold">Error al enviar el mensaje</p>
+                      <p className="text-sm">Por favor, inténtalo de nuevo o contáctanos directamente.</p>
+                    </div>
+                  </div>
                 </div>
               )}
             </form>
