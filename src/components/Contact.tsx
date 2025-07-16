@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [state] = useForm("xdkogkqw");
   const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({
     name: '',
@@ -21,58 +18,130 @@ const Contact = () => {
     }));
   };
 
-  const onSubmit = async (e: React.FormEvent) => {
+  // OPCIÓN 1: Formspree (Recomendado - Más fácil)
+  const handleFormspreeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
 
     try {
-      // Configuración de EmailJS
-      const serviceId = 'service_0awzw2m';
-      const templateId = 'template_42jj02p';
-      const publicKey = 'bGIPGmIuz_2uxmX2r';
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
 
-      // Inicializar EmailJS con la clave pública
-      emailjs.init(publicKey);
-      
-      // Preparar los parámetros del template
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'romerojesusdavid76@gmail.com',
-        reply_to: formData.email
-      };
-
-      console.log('Enviando email con parámetros:', templateParams);
-
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
-
-      console.log('EmailJS result:', result);
-      
-      if (result.status === 200) {
+      if (response.ok) {
         setStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
         throw new Error('Error en el envío');
       }
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
+
+  // OPCIÓN 2: Web3Forms (Sin registro)
+  const handleWeb3FormsSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    const formDataWeb3 = new FormData();
+    formDataWeb3.append('access_key', 'YOUR_ACCESS_KEY'); // Obtener de web3forms.com
+    formDataWeb3.append('name', formData.name);
+    formDataWeb3.append('email', formData.email);
+    formDataWeb3.append('subject', formData.subject);
+    formDataWeb3.append('message', formData.message);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataWeb3
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error('Error en el envío');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
+  // OPCIÓN 3: Netlify Forms (Si usas Netlify)
+  const handleNetlifySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    const formDataNetlify = new FormData();
+    formDataNetlify.append('form-name', 'contact');
+    formDataNetlify.append('name', formData.name);
+    formDataNetlify.append('email', formData.email);
+    formDataNetlify.append('subject', formData.subject);
+    formDataNetlify.append('message', formData.message);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataNetlify as any).toString()
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error('Error en el envío');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
+  // OPCIÓN 4: Mailto (Básico pero funcional)
+  const handleMailtoSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const subject = encodeURIComponent(`${formData.subject} - Contacto desde EliteGym`);
+    const body = encodeURIComponent(
+      `Nombre: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Asunto: ${formData.subject}\n\n` +
+      `Mensaje:\n${formData.message}\n\n` +
+      `---\n` +
+      `Enviado desde el formulario de contacto de EliteGym`
+    );
+    
+    const mailtoLink = `mailto:info@elitegym.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+    
+    setStatus('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setTimeout(() => setStatus('idle'), 3000);
+  };
+
+  // Usar la opción que prefieras cambiando la función en onSubmit
+  const onSubmit = handleMailtoSubmit; // Cambiar por la opción deseada
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -151,7 +220,19 @@ const Contact = () => {
           </div>
           
           <div className="lg:w-1/2">
-            <form onSubmit={onSubmit} className="bg-white rounded-lg shadow-lg p-8">
+            {/* Formulario para Netlify (agregar data-netlify="true" si usas Netlify) */}
+            <form 
+              onSubmit={onSubmit} 
+              className="bg-white rounded-lg shadow-lg p-8"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              {/* Campo oculto para Netlify */}
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
+              
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Envíanos un mensaje</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -167,7 +248,6 @@ const Contact = () => {
                     placeholder="Tu nombre"
                     required
                   />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
                 
                 <div>
@@ -182,7 +262,6 @@ const Contact = () => {
                     placeholder="tu@email.com"
                     required
                   />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
               </div>
               
@@ -198,7 +277,6 @@ const Contact = () => {
                   placeholder="¿En qué podemos ayudarte?"
                   required
                 />
-                <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               </div>
               
               <div className="mb-6">
@@ -213,7 +291,6 @@ const Contact = () => {
                   placeholder="Escribe tu mensaje aquí..."
                   required
                 ></textarea>
-                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </div>
               
               <button 
@@ -236,7 +313,7 @@ const Contact = () => {
               
               {status === 'error' && (
                 <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                  Error al enviar el mensaje. Por favor, verifica los campos e inténtalo de nuevo.
+                  Error al enviar el mensaje. Por favor, inténtalo de nuevo.
                 </div>
               )}
             </form>
