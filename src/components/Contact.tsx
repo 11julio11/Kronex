@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Clock } from 'lucide-react';
 
