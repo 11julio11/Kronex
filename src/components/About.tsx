@@ -1,6 +1,6 @@
  
 import { Code, Smartphone, Cloud } from 'lucide-react';
-import aboutImage from '../assets/images/about/about3.jpeg';
+import aboutImage from '../assets/images/about/nosotros.png';
 
 const About = () => {
   return (
