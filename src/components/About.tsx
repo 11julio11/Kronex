@@ -1,4 +1,5 @@
-import { Target, Award, Heart, Code, Smartphone, Cloud } from 'lucide-react';
+ 
+import { Code, Smartphone, Cloud } from 'lucide-react';
 import aboutImage from '../assets/images/about/about3.jpeg';
 
 const About = () => {
