@@ -1,4 +1,4 @@
-import { Target, Award, Heart } from 'lucide-react';
+import { Target, Award, Heart, Code, Smartphone, Cloud } from 'lucide-react';
 import aboutImage from '../assets/images/about/about3.jpeg';
 
 const About = () => {
@@ -6,7 +6,7 @@ const About = () => {
     <section id="about" className="py-20 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">NOSOTROS</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">SOBRE KRONEX</h2>
           <div className="w-20 h-1 bg-gold mx-auto"></div>
         </div>
 
@@ -29,32 +29,32 @@ const About = () => {
 
 
           <div className="md:w-1/2">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Un gimnasio como ningún otro</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Una empresa tecnológica diferente</h3>
             <p className="text-gray-300 mb-8 leading-relaxed">
-              En EliteGym, nos dedicamos a proporcionar una experiencia de fitness incomparable. 
-              Nuestro gimnasio ofrece equipamiento de última generación, entrenadores profesionales 
-              y un ambiente diseñado para motivar e inspirar a nuestros miembros a alcanzar sus 
-              objetivos de bienestar físico.
+              En Kronex, nos especializamos en brindar soluciones tecnológicas integrales que transforman 
+              la manera en que las empresas operan. Desde desarrollo web y aplicaciones móviles hasta 
+              consultoría en transformación digital, ofrecemos servicios de vanguardia respaldados por 
+              un equipo de expertos comprometidos con la excelencia.
             </p>
 
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-900 p-6 rounded-lg">
-                <Target className="text-gold mb-3 h-8 w-8" />
+                <Code className="text-gold mb-3 h-8 w-8" />
                 <h4 className="text-white font-bold text-xl mb-2">Misión</h4>
-                <p className="text-gray-400 text-sm">Transformar vidas a través del fitness, proporcionando las herramientas y el apoyo necesarios para un bienestar completo.</p>
+                <p className="text-gray-400 text-sm">Impulsar el crecimiento empresarial a través de soluciones tecnológicas innovadoras, eficientes y personalizadas.</p>
               </div>
               
               <div className="bg-gray-900 p-6 rounded-lg">
-                <Award className="text-gold mb-3 h-8 w-8" />
+                <Smartphone className="text-gold mb-3 h-8 w-8" />
                 <h4 className="text-white font-bold text-xl mb-2">Visión</h4>
-                <p className="text-gray-400 text-sm">Ser reconocidos como el gimnasio de referencia en excelencia y resultados, estableciendo nuevos estándares en la industria.</p>
+                <p className="text-gray-400 text-sm">Ser la empresa líder en soluciones tecnológicas, reconocida por nuestra innovación y compromiso con el éxito de nuestros clientes.</p>
               </div>
               
               <div className="bg-gray-900 p-6 rounded-lg">
-                <Heart className="text-gold mb-3 h-8 w-8" />
+                <Cloud className="text-gold mb-3 h-8 w-8" />
                 <h4 className="text-white font-bold text-xl mb-2">Valores</h4>
-                <p className="text-gray-400 text-sm">Compromiso, integridad, innovación y pasión por el bienestar de nuestra comunidad de miembros.</p>
+                <p className="text-gray-400 text-sm">Innovación, excelencia, transparencia y compromiso absoluto con el éxito y crecimiento de nuestros clientes.</p>
               </div>
             </div>
           </div>

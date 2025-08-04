@@ -55,8 +55,8 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Dumbbell className="text-gold h-8 w-8 mr-2" />
-            <span className="text-white font-bold text-2xl">ELITE<span className="text-gold">GYM</span></span>
+            <div className="text-gold h-8 w-8 mr-2 font-bold text-2xl">K</div>
+            <span className="text-white font-bold text-2xl">KRON<span className="text-gold">EX</span></span>
           </div>
 
           {/* Desktop Navigation */}

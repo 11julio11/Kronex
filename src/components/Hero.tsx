@@ -20,17 +20,17 @@ const Hero = () => {
     >
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
-          TRANSFORMA TU <span className="text-gold">CUERPO</span>, <br />
-          TRANSFORMA TU <span className="text-gold">VIDA</span>
+          TRANSFORMA TU <span className="text-gold">NEGOCIO</span>, <br />
+          TRANSFORMA TU <span className="text-gold">FUTURO</span>
         </h1>
         <p className="text-xl md:text-2xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
-          Un espacio exclusivo donde el fitness se convierte en un estilo de vida
+          Soluciones tecnológicas innovadoras que impulsan el crecimiento empresarial
         </p>
         <button 
           onClick={scrollToPlans} 
           className="bg-gold text-black py-3 px-8 rounded-md text-lg font-semibold uppercase tracking-wider hover:bg-white transition-all duration-300 transform hover:scale-105"
         >
-          Únete ahora
+          Comenzar Ahora
         </button>
       </div>
       

@@ -16,7 +16,7 @@ import TestConnection from './components/TestConnection';
 
 function App() {
   useEffect(() => {
-    document.title = 'EliteGym - Transforma Tu Vida';
+    document.title = 'Kronex - Soluciones Tecnológicas Innovadoras';
   }, []);
 
   return (

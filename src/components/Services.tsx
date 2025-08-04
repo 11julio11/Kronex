@@ -1,36 +1,36 @@
-import { Dumbbell, Users, Apple, Activity, Droplets } from 'lucide-react';
+import { Code, Smartphone, Cloud, Database, Shield, Zap } from 'lucide-react';
 
 const Services = () => {
   const servicesList = [
     {
-      icon: <Dumbbell className="h-10 w-10 text-gold" />,
-      title: 'Entrenamiento Personalizado',
-      description: 'Programas diseñados específicamente para tus objetivos y necesidades, con atención individualizada de nuestros expertos entrenadores.'
+      icon: <Code className="h-10 w-10 text-gold" />,
+      title: 'Desarrollo Web',
+      description: 'Sitios web modernos, responsivos y optimizados. Desde landing pages hasta plataformas e-commerce complejas con las últimas tecnologías.'
     },
     {
-      icon: <Users className="h-10 w-10 text-gold" />,
-      title: 'Clases Grupales',
-      description: 'Desde HIIT y spinning hasta yoga y pilates, nuestras clases grupales ofrecen variedad y motivación en comunidad.'
+      icon: <Smartphone className="h-10 w-10 text-gold" />,
+      title: 'Aplicaciones Móviles',
+      description: 'Apps nativas e híbridas para iOS y Android. Experiencias móviles intuitivas que conectan con tus usuarios donde sea que estén.'
     },
     {
-      icon: <Dumbbell className="h-10 w-10 text-gold" />,
-      title: 'Musculación',
-      description: 'Zona equipada con máquinas de última generación y pesos libres para desarrollar fuerza y construir músculo.'
+      icon: <Cloud className="h-10 w-10 text-gold" />,
+      title: 'Soluciones Cloud',
+      description: 'Migración y gestión de infraestructura en la nube. Escalabilidad, seguridad y eficiencia para tu negocio digital.'
     },
     {
-      icon: <Apple className="h-10 w-10 text-gold" />,
-      title: 'Nutrición',
-      description: 'Asesoramiento nutricional personalizado para complementar tu entrenamiento y maximizar tus resultados.'
+      icon: <Database className="h-10 w-10 text-gold" />,
+      title: 'Gestión de Datos',
+      description: 'Análisis, procesamiento y visualización de datos. Convierte la información en insights accionables para tu empresa.'
     },
     {
-      icon: <Activity className="h-10 w-10 text-gold" />,
-      title: 'Fisioterapia',
-      description: 'Servicio especializado para prevenir lesiones, acelerar la recuperación y mejorar el rendimiento físico.'
+      icon: <Shield className="h-10 w-10 text-gold" />,
+      title: 'Ciberseguridad',
+      description: 'Protección integral de sistemas y datos. Auditorías de seguridad, implementación de protocolos y monitoreo continuo.'
     },
     {
-      icon: <Droplets className="h-10 w-10 text-gold" />,
-      title: 'Spa y Recuperación',
-      description: 'Espacio dedicado al bienestar con sauna, baño turco y servicios de masaje para una recuperación óptima.'
+      icon: <Zap className="h-10 w-10 text-gold" />,
+      title: 'Automatización',
+      description: 'Optimización de procesos empresariales mediante automatización inteligente. Aumenta la eficiencia y reduce costos operativos.'
     }
   ];
 
@@ -38,11 +38,11 @@ const Services = () => {
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">NUESTROS SERVICIOS</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">NUESTRAS SOLUCIONES</h2>
           <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Ofrecemos una amplia gama de servicios premium diseñados para ayudarte a alcanzar tus objetivos fitness, 
-            sea cual sea tu nivel o experiencia.
+            Ofrecemos una amplia gama de soluciones tecnológicas diseñadas para impulsar el crecimiento y 
+            la transformación digital de tu empresa, sin importar su tamaño o industria.
           </p>
         </div>
 
