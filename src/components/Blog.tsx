@@ -1,150 +1,150 @@
 import { useState } from 'react';
 import { Calendar, User, ArrowRight, X } from 'lucide-react';
-import blog1 from '../assets/images/blog/blog-1.jpeg';
-import blog2 from '../assets/images/blog/blog-2.jpeg';
-import blog3 from '../assets/images/blog/blog-3.jpeg';
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);
 
   const blogPosts = [
     {
-      title: 'Los 5 mejores ejercicios para ganar masa muscular',
-      excerpt: 'Descubre los ejercicios compuestos más efectivos para desarrollar músculo de forma eficiente y optimizar tus resultados.',
-      content: `Los ejercicios compuestos son fundamentales para el desarrollo muscular efectivo. Aquí te presentamos los 5 ejercicios más importantes:
+      title: 'Las 5 tendencias tecnológicas que transformarán tu empresa en 2025',
+      excerpt: 'Descubre las tecnologías emergentes más impactantes que están redefiniendo el panorama empresarial y cómo implementarlas.',
+      content: `Las tecnologías emergentes están transformando la manera en que las empresas operan. Aquí te presentamos las 5 tendencias más importantes:
 
-1. Sentadillas (Squats)
-- Trabaja múltiples grupos musculares simultáneamente
-- Aumenta la producción de testosterona y hormona del crecimiento
-- Mejora la fuerza funcional y la estabilidad central
-- Técnica correcta: mantén la espalda recta, rodillas alineadas con los pies
+1. Inteligencia Artificial Generativa
+- Automatización de procesos creativos y analíticos
+- Mejora en la toma de decisiones basada en datos
+- Personalización de experiencias de usuario
+- Implementación: chatbots inteligentes, análisis predictivo
 
-2. Press de Banca
-- Desarrollo completo del pecho, hombros y tríceps
-- Variaciones para diferentes objetivos
-- Importancia del agarre y la respiración
-- Progresión de peso gradual y segura
+2. Edge Computing
+- Procesamiento de datos más cerca del usuario final
+- Reducción de latencia y mejora de rendimiento
+- Mayor seguridad y privacidad de datos
+- Aplicaciones: IoT, realidad aumentada, vehículos autónomos
 
-3. Peso Muerto
-- Ejercicio completo para espalda y piernas
-- Mejora la postura y la fuerza del core
-- Técnica esencial para prevenir lesiones
-- Variantes según nivel y objetivos
+3. Blockchain y Web3
+- Descentralización de sistemas y datos
+- Contratos inteligentes para automatización
+- Trazabilidad y transparencia mejoradas
+- Casos de uso: supply chain, identidad digital, finanzas
 
-4. Dominadas
-- Desarrollo de espalda y bíceps
-- Progresión desde asistidas hasta con peso adicional
-- Diferentes agarres para distintos énfasis
-- Programación efectiva en tu rutina
+4. Computación Cuántica
+- Capacidad de procesamiento exponencial
+- Resolución de problemas complejos
+- Avances en criptografía y seguridad
+- Impacto: optimización, simulaciones, machine learning
 
-5. Press Militar
-- Desarrollo de hombros y estabilidad
-- Variaciones sentado y de pie
-- Importancia del core y la postura
-- Integración en tu programa de entrenamiento
+5. Realidad Extendida (XR)
+- Combinación de AR, VR y realidad mixta
+- Nuevas formas de interacción y colaboración
+- Entrenamiento inmersivo y simulaciones
+- Aplicaciones: educación, marketing, diseño
 
-Consejos adicionales:
-- Importancia del calentamiento adecuado
-- Progresión gradual en peso y repeticiones
-- Descanso y recuperación entre series
-- Nutrición para optimizar resultados`,
-      image: blog1,
+Consejos para la implementación:
+- Evaluación de necesidades específicas de tu empresa
+- Planificación gradual y estratégica
+- Capacitación del equipo en nuevas tecnologías
+- Medición de ROI y ajustes continuos`,
+      image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
       date: '15 Mar 2025',
       author: 'Carlos Mendoza',
-      category: 'Entrenamiento',
+      category: 'Tecnología',
     },
     {
-      title: 'Nutrición pre y post entrenamiento: guía completa',
-      excerpt: 'Todo lo que necesitas saber sobre qué alimentos consumir antes y después de tu rutina para maximizar tu rendimiento y recuperación.',
-      content: `La nutrición adecuada antes y después del entrenamiento es crucial para optimizar tus resultados. Esta guía te ayudará a entender qué y cuándo comer.
+      title: 'Ciberseguridad empresarial: guía completa de protección',
+      excerpt: 'Todo lo que necesitas saber sobre cómo proteger tu empresa de amenazas digitales y mantener tus datos seguros.',
+      content: `La ciberseguridad es fundamental para cualquier empresa moderna. Esta guía te ayudará a entender cómo proteger tu organización.
 
-Nutrición Pre-Entrenamiento:
+Fundamentos de Ciberseguridad:
 
-1. Timing Óptimo (2-3 horas antes)
-- Carbohidratos complejos para energía sostenida
-- Proteína moderada para disponibilidad de aminoácidos
-- Grasas limitadas para digestión fácil
+1. Evaluación de Riesgos
+- Identificación de activos críticos
+- Análisis de vulnerabilidades
+- Evaluación de amenazas potenciales
 
-Alimentos Recomendados:
-- Avena con proteína
-- Plátano con mantequilla de almendras
-- Pan integral con pavo
-- Batido de proteínas con frutas
+Medidas de Protección Esenciales:
+- Firewalls de nueva generación
+- Sistemas de detección de intrusiones
+- Autenticación multifactor
+- Cifrado de datos end-to-end
 
-Nutrición Post-Entrenamiento:
+2. Gestión de Accesos
+- Principio de menor privilegio
+- Revisión periódica de permisos
+- Monitoreo de actividades de usuario
 
-1. Ventana Anabólica (30-60 minutos después)
-- Carbohidratos rápidos para reposición de glucógeno
-- Proteína de alta calidad para recuperación muscular
-- Electrolitos para hidratación
+3. Backup y Recuperación
+- Estrategia 3-2-1 de respaldo
+- Pruebas regulares de restauración
+- Plan de continuidad de negocio
 
-Alimentos Ideales:
-- Batido de proteína con plátano
-- Pechuga de pollo con arroz
-- Yogur griego con frutas
-- Atún con patata dulce
+4. Capacitación del Personal
+- Concienciación sobre phishing
+- Políticas de seguridad claras
+- Simulacros de incidentes
 
-Suplementación Estratégica:
-- BCAA durante el entrenamiento
-- Creatina post-entrenamiento
-- Proteína en polvo de calidad
-- Electrolitos para hidratación
-
-Consejos Adicionales:
-- Hidratación antes, durante y después
-- Ajuste según tipo e intensidad de entrenamiento
-- Consideraciones para objetivos específicos
-- Importancia de la consistencia`,
-      image: blog2,
+Mejores Prácticas:
+- Actualizaciones regulares de software
+- Monitoreo continuo de la red
+- Respuesta rápida a incidentes
+- Auditorías de seguridad periódicas`,
+      image: 'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800',
       date: '02 Mar 2025',
       author: 'Laura Sánchez',
-      category: 'Nutrición',
+      category: 'Seguridad',
     },
     {
-      title: 'Cómo superar el estancamiento en tu progreso fitness',
-      excerpt: 'Estrategias efectivas para romper mesetas y continuar progresando hacia tus objetivos cuando sientes que has llegado a un punto muerto.',
-      content: `El estancamiento es una fase normal en el proceso de entrenamiento, pero existen estrategias probadas para superarlo y seguir progresando.
+      title: 'Migración a la nube: estrategias para el éxito empresarial',
+      excerpt: 'Estrategias efectivas para migrar tu infraestructura a la nube sin interrumpir las operaciones y maximizando los beneficios.',
+      content: `La migración a la nube es un proceso crítico que requiere planificación estratégica. Aquí te mostramos cómo hacerlo correctamente.
 
-1. Análisis de la Situación
-- Revisión detallada de tu programa actual
-- Identificación de patrones y rutinas
-- Evaluación de factores limitantes
-- Establecimiento de nuevos objetivos
+1. Evaluación Inicial
+- Auditoría de infraestructura actual
+- Identificación de aplicaciones críticas
+- Análisis de dependencias
+- Evaluación de costos
 
-2. Estrategias de Entrenamiento
-Variación de Estímulos:
-- Cambio de rangos de repeticiones
-- Introducción de nuevos ejercicios
-- Modificación de tempos
-- Períodos de descarga planificados
+2. Estrategias de Migración
 
-3. Optimización de la Recuperación
-- Mejora de la calidad del sueño
-- Gestión del estrés
-- Técnicas de recuperación activa
-- Nutrición específica
+Lift and Shift:
+- Migración directa sin modificaciones
+- Rápida implementación
+- Menor riesgo inicial
+- Optimización posterior
 
-4. Ajustes Nutricionales
-- Recálculo de necesidades calóricas
-- Timing de nutrientes
-- Ciclos de carbohidratos
-- Suplementación estratégica
+Refactoring:
+- Modificación de aplicaciones
+- Aprovechamiento de servicios cloud
+- Mejor rendimiento y escalabilidad
+- Mayor inversión inicial
 
-5. Aspectos Mentales
-- Establecimiento de metas realistas
-- Visualización y motivación
-- Registro de progreso
-- Apoyo social y accountability
+3. Planificación de la Migración
+- Priorización de cargas de trabajo
+- Cronograma detallado
+- Plan de rollback
+- Comunicación con stakeholders
 
-Plan de Acción:
-- Evaluación semanal de progreso
-- Ajustes basados en respuesta
-- Documentación de cambios
-- Celebración de pequeñas victorias`,
-      image: blog3,
+4. Ejecución y Monitoreo
+- Migración por fases
+- Pruebas exhaustivas
+- Monitoreo de rendimiento
+- Optimización continua
+
+5. Post-Migración
+- Capacitación del equipo
+- Optimización de costos
+- Implementación de governance
+- Medición de ROI
+
+Beneficios Esperados:
+- Reducción de costos operativos
+- Mayor escalabilidad y flexibilidad
+- Mejora en la seguridad
+- Acceso a tecnologías avanzadas`,
+      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
       date: '22 Feb 2025',
       author: 'Miguel Ángel Torres',
-      category: 'Motivación',
+      category: 'Cloud',
     },
   ];
 
