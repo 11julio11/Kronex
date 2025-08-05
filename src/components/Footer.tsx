@@ -1,4 +1,4 @@
-import { Code, Phone, Mail, MapPin, Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
