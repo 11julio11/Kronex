@@ -83,49 +83,44 @@ const Services = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-carbon-black mb-4">
-            NUESTRAS SOLUCIONES
+            NUESTROS SERVICIOS
             <span className="inline-block ml-2 animate-bounce">🚀</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-electric-blue to-neon-cyan mx-auto mb-6 rounded-full"></div>
           <p className="text-titanium-gray max-w-3xl mx-auto">
-            Ofrecemos una amplia gama de soluciones tecnológicas diseñadas para impulsar el crecimiento y 
+            Ofrecemos una amplia gama de soluciones tecnológicas diseñadas para impulsar el crecimiento y
             la transformación digital de tu empresa, sin importar su tamaño o industria.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesList.map((service, index) => (
-            <div 
-              key={index} 
-              className={`relative group cursor-pointer transition-all duration-500 transform hover:scale-105 ${
-                hoveredService === index ? 'z-20' : 'z-10'
-              }`}
+            <div
+              key={index}
+              className={`relative group cursor-pointer transition-all duration-500 transform hover:scale-105 ${hoveredService === index ? 'z-20' : 'z-10'
+                }`}
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
               {/* Main Card */}
-              <div className={`bg-pure-white p-8 rounded-2xl shadow-lg transition-all duration-500 border-2 ${
-                hoveredService === index 
-                  ? 'border-electric-blue shadow-2xl shadow-electric-blue/20' 
+              <div className={`bg-pure-white p-8 rounded-2xl shadow-lg transition-all duration-500 border-2 ${hoveredService === index
+                  ? 'border-electric-blue shadow-2xl shadow-electric-blue/20'
                   : 'border-transparent hover:shadow-xl'
-              }`}>
-                
-                {/* Icon Container with Glow Effect */}
-                <div className={`relative mb-6 transition-all duration-500 ${
-                  hoveredService === index ? 'transform -translate-y-2' : ''
                 }`}>
-                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                    hoveredService === index 
-                      ? `bg-gradient-to-br ${service.gradient} shadow-lg` 
-                      : 'bg-gray-100'
+
+                {/* Icon Container with Glow Effect */}
+                <div className={`relative mb-6 transition-all duration-500 ${hoveredService === index ? 'transform -translate-y-2' : ''
                   }`}>
-                    <div className={`transition-all duration-300 ${
-                      hoveredService === index ? 'text-white scale-110' : 'text-electric-blue'
+                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-500 ${hoveredService === index
+                      ? `bg-gradient-to-br ${service.gradient} shadow-lg`
+                      : 'bg-gray-100'
                     }`}>
+                    <div className={`transition-all duration-300 ${hoveredService === index ? 'text-white scale-110' : 'text-electric-blue'
+                      }`}>
                       {service.icon}
                     </div>
                   </div>
-                  
+
                   {/* Floating Stats Badge */}
                   {hoveredService === index && (
                     <div className="absolute -top-2 -right-2 bg-electric-blue text-white text-xs px-2 py-1 rounded-full animate-fade-in">
@@ -136,27 +131,25 @@ const Services = () => {
                 </div>
 
                 {/* Title with Gradient Effect on Hover */}
-                <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${
-                  hoveredService === index 
-                    ? 'bg-gradient-to-r from-electric-blue to-neon-cyan bg-clip-text text-transparent' 
+                <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${hoveredService === index
+                    ? 'bg-gradient-to-r from-electric-blue to-neon-cyan bg-clip-text text-transparent'
                     : 'text-carbon-black'
-                }`}>
+                  }`}>
                   {service.title}
                 </h3>
-                
+
                 <p className="text-titanium-gray mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Features List - Appears on Hover */}
-                <div className={`transition-all duration-500 overflow-hidden ${
-                  hoveredService === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
+                <div className={`transition-all duration-500 overflow-hidden ${hoveredService === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-carbon-black mb-2">Tecnologías:</h4>
                     <div className="flex flex-wrap gap-1">
                       {service.features.map((feature, idx) => (
-                        <span 
+                        <span
                           key={idx}
                           className="text-xs bg-electric-blue text-white px-2 py-1 rounded-full"
                         >
@@ -171,13 +164,12 @@ const Services = () => {
                 <div className="flex items-center justify-between mt-6">
                   <button
                     onClick={() => toggleDemo(index)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                      playingDemo === index
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${playingDemo === index
                         ? 'bg-red-500 text-white'
                         : hoveredService === index
-                        ? 'bg-electric-blue text-white'
-                        : 'bg-gray-100 text-carbon-black hover:bg-electric-blue hover:text-white'
-                    }`}
+                          ? 'bg-electric-blue text-white'
+                          : 'bg-gray-100 text-carbon-black hover:bg-electric-blue hover:text-white'
+                      }`}
                   >
                     {playingDemo === index ? (
                       <>
@@ -208,8 +200,8 @@ const Services = () => {
                       <span className="text-xs text-titanium-gray">{service.stats.avgTime}</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className={`h-2 rounded-full bg-gradient-to-r ${service.gradient} animate-pulse`} 
-                           style={{ width: '100%', animation: 'progress 3s ease-in-out' }}></div>
+                      <div className={`h-2 rounded-full bg-gradient-to-r ${service.gradient} animate-pulse`}
+                        style={{ width: '100%', animation: 'progress 3s ease-in-out' }}></div>
                     </div>
                   </div>
                 )}
@@ -236,13 +228,13 @@ const Services = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/10 to-neon-cyan/10"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold text-white mb-4">
-                ¿Listo para transformar tu negocio? 
+                ¿Listo para transformar tu negocio?
                 <span className="inline-block ml-2 animate-pulse">⚡</span>
               </h3>
               <p className="text-gray-300 mb-6">
                 Nuestro equipo de expertos está listo para llevar tu empresa al siguiente nivel tecnológico.
               </p>
-              <button 
+              <button
                 onClick={() => {
                   const element = document.getElementById('contact');
                   if (element) {
