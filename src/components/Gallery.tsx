@@ -1,57 +1,49 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import gallery1 from '../assets/images/gallery/entranamiento_funcional.jpeg';
-import gallery2 from '../assets/images/gallery/area_de_pesas.jpeg';
-import gallery3 from '../assets/images/gallery/clases_de_spinning.jpeg';
-import gallery4 from '../assets/images/gallery/area_de_cardio.jpeg';
-import gallery5 from '../assets/images/gallery/clases_de_yoga.jpeg';
-import gallery6 from '../assets/images/gallery/entrenamiento_personal.jpeg';
-import gallery7 from '../assets/images/gallery/evento_fitness.jpeg';
-import gallery8 from '../assets/images/gallery/spaysauna.jpeg';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const galleryImages = [
     {
-      src: gallery1,
-      alt: 'Área de pesas',
-      category: 'instalaciones'
+      src: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Oficina moderna de desarrollo',
+      category: 'oficinas'
     },
     {
-      src: gallery2,
-      alt: 'Clase de spinning',
-      category: 'clases'
+      src: 'https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Equipo trabajando en proyecto',
+      category: 'equipo'
     },
     {
-      src: gallery3,
-      alt: 'Entrenamiento funcional',
-      category: 'entrenamientos'
+      src: 'https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Sala de servidores',
+      category: 'infraestructura'
     },
     {
-      src: gallery4,
-      alt: 'Área de cardio',
-      category: 'instalaciones'
+      src: 'https://images.pexels.com/photos/3861457/pexels-photo-3861457.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Sesión de brainstorming',
+      category: 'proyectos'
     },
     {
-      src: gallery5,
-      alt: 'Clase de yoga',
-      category: 'clases'
-    },
-    {
-      src: gallery6,
-      alt: 'Spa y sauna',
-      category: 'instalaciones'
-    },
-    {
-      src: gallery7,
-      alt: 'Evento fitness',
+      src: 'https://images.pexels.com/photos/3861961/pexels-photo-3861961.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Presentación de proyecto',
       category: 'eventos'
     },
     {
-      src: gallery8,
-      alt: 'Entrenamiento personal',
-      category: 'entrenamientos'
+      src: 'https://images.pexels.com/photos/3861456/pexels-photo-3861456.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Área de testing',
+      category: 'desarrollo'
+    },
+    {
+      src: 'https://images.pexels.com/photos/3861455/pexels-photo-3861455.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Conferencia tecnológica',
+      category: 'eventos'
+    },
+    {
+      src: 'https://images.pexels.com/photos/3861454/pexels-photo-3861454.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Centro de monitoreo',
+      category: 'infraestructura'
     },
   ];
 

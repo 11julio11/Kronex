@@ -4,8 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: '#D4AF37',
-        black: '#111111',
+        'carbon-black': '#1a1a1a',
+        'electric-blue': '#0066ff',
+        'titanium-gray': '#6b7280',
+        'pure-white': '#ffffff',
+        'neon-cyan': '#00ffff',
+        // Mantener gold para compatibilidad
+        gold: '#0066ff',
+        black: '#1a1a1a',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-in-out',

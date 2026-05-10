@@ -3,62 +3,62 @@ import { Check, Star, Crown } from 'lucide-react';
 const Plans = () => {
   const plans = [
     {
-      name: 'Básico',
-      price: '29',
+      name: 'Startup',
+      price: '299',
       period: 'mes',
-      description: 'Perfecto para comenzar tu transformación',
+      description: 'Perfecto para empresas emergentes',
       features: [
-        'Acceso completo al gimnasio',
-        'Uso de todas las máquinas',
-        'Área de cardio',
-        'Vestuarios y duchas',
-        'Horario: 6:00 - 23:00',
+        'Sitio web profesional',
+        'Hosting y dominio incluido',
+        'Diseño responsive',
+        'SEO básico optimizado',
+        'Soporte técnico 24/7',
       ],
       notIncluded: [
-        'Clases grupales',
-        'Entrenador personal',
-        'Nutricionista',
-        'Spa y sauna',
+        'Aplicación móvil',
+        'E-commerce avanzado',
+        'Integración con CRM',
+        'Análisis avanzado',
       ],
       popular: false,
       color: 'gray',
     },
     {
-      name: 'Premium',
-      price: '49',
+      name: 'Business',
+      price: '599',
       period: 'mes',
-      description: 'La opción más popular para resultados completos',
+      description: 'La opción más popular para empresas en crecimiento',
       features: [
-        'Todo lo del plan Básico',
-        'Clases grupales ilimitadas',
-        '2 sesiones de entrenador personal',
-        'Consulta nutricional inicial',
-        'Acceso a spa y sauna',
-        'Horario extendido: 24/7',
-        'Invitado gratis 2 veces/mes',
+        'Todo lo del plan Startup',
+        'Aplicación móvil nativa',
+        'E-commerce completo',
+        'Integración con sistemas',
+        'Dashboard de analytics',
+        'Automatización de procesos',
+        'Consultoría mensual incluida',
       ],
       notIncluded: [
-        'Entrenamiento personal ilimitado',
-        'Plan nutricional personalizado',
+        'Desarrollo personalizado ilimitado',
+        'Infraestructura dedicada',
       ],
       popular: true,
       color: 'gold',
     },
     {
-      name: 'Elite',
-      price: '89',
+      name: 'Enterprise',
+      price: '1299',
       period: 'mes',
-      description: 'La experiencia completa de élite',
+      description: 'Solución completa para grandes empresas',
       features: [
-        'Todo lo del plan Premium',
-        'Entrenador personal ilimitado',
-        'Plan nutricional personalizado',
-        'Seguimiento mensual completo',
-        'Acceso VIP a eventos especiales',
-        'Masajes de recuperación (2/mes)',
-        'Suplementos básicos incluidos',
-        'Parking gratuito',
-        'Toallas incluidas',
+        'Todo lo del plan Business',
+        'Desarrollo personalizado ilimitado',
+        'Infraestructura cloud dedicada',
+        'Integración con sistemas legacy',
+        'Soporte prioritario 24/7',
+        'Consultoría estratégica semanal',
+        'Ciberseguridad avanzada',
+        'Backup y recuperación',
+        'SLA garantizado 99.9%',
       ],
       notIncluded: [],
       popular: false,
@@ -74,14 +74,14 @@ const Plans = () => {
   };
 
   return (
-    <section id="plans" className="py-20 bg-white">
+    <section id="plans" className="py-20 bg-pure-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">NUESTROS PLANES</h2>
-          <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+          <h2 className="text-3xl md:text-4xl font-bold text-carbon-black mb-4">NUESTRAS SOLUCIONES</h2>
+          <div className="w-20 h-1 bg-electric-blue mx-auto mb-6"></div>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Elige el plan que mejor se adapte a tus objetivos y estilo de vida.
-            Todos nuestros planes incluyen acceso a instalaciones de primera clase.
+            Elige la solución que mejor se adapte a las necesidades de tu empresa.
+            Todas nuestras soluciones incluyen tecnología de vanguardia y soporte especializado.
           </p>
         </div>
 
@@ -90,28 +90,28 @@ const Plans = () => {
             <div
               key={index}
               className={`relative rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:scale-105 ${plan.popular
-                  ? 'ring-4 ring-gold transform scale-105'
+                  ? 'ring-4 ring-electric-blue transform scale-105'
                   : 'hover:shadow-2xl'
                 }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gold text-black text-center py-2 font-bold text-sm uppercase tracking-wider">
+                <div className="absolute top-0 left-0 right-0 bg-electric-blue text-white text-center py-2 font-bold text-sm uppercase tracking-wider">
                   <Star className="inline h-4 w-4 mr-1" />
                   Más Popular
                 </div>
               )}
 
               <div className={`${plan.color === 'gold'
-                  ? 'bg-gradient-to-br from-gold to-yellow-500'
+                  ? 'bg-gradient-to-br from-electric-blue to-blue-600'
                   : plan.color === 'black'
-                    ? 'bg-gradient-to-br from-black to-gray-800'
+                    ? 'bg-gradient-to-br from-carbon-black to-gray-800'
                     : 'bg-gradient-to-br from-gray-100 to-gray-200'
                 } ${plan.popular ? 'pt-12' : 'pt-8'} pb-8 px-8 text-center`}>
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${plan.color === 'gold'
-                    ? 'bg-white text-gold'
+                    ? 'bg-white text-electric-blue'
                     : plan.color === 'black'
-                      ? 'bg-gold text-black'
-                      : 'bg-gold text-black'
+                      ? 'bg-electric-blue text-white'
+                      : 'bg-electric-blue text-white'
                   }`}>
                   {plan.color === 'black' ? (
                     <Crown className="h-8 w-8" />
@@ -163,17 +163,17 @@ const Plans = () => {
                 <button
                   onClick={scrollToContact}
                   className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${plan.popular
-                      ? 'bg-gold text-black hover:bg-yellow-400 transform hover:scale-105'
+                      ? 'bg-electric-blue text-white hover:bg-blue-600 transform hover:scale-105'
                       : plan.color === 'black'
-                        ? 'bg-black text-white hover:bg-gray-800'
-                        : 'bg-gray-900 text-white hover:bg-black'
+                        ? 'bg-carbon-black text-white hover:bg-gray-800'
+                        : 'bg-carbon-black text-white hover:bg-gray-800'
                     }`}
                 >
                   Comenzar Ahora
                 </button>
 
                 <p className="text-xs text-gray-500 mt-4 text-center">
-                  Sin permanencia • Cancela cuando quieras
+                  Sin compromiso • Cancela cuando quieras
                 </p>
               </div>
             </div>
@@ -182,23 +182,24 @@ const Plans = () => {
 
         <div className="text-center mt-16">
           <div className="bg-gray-50 rounded-lg p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">¿No estás seguro qué plan elegir?</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">¿No estás seguro qué solución elegir?</h3>
             <p className="text-gray-600 mb-6">
-              Nuestros asesores fitness te ayudarán a encontrar el plan perfecto para tus objetivos.
-              Agenda una consulta gratuita y descubre todo lo que EliteGym puede ofrecerte.
+              Nuestros consultores tecnológicos te ayudarán a encontrar la solución perfecta para tu empresa.
+              Agenda una consulta gratuita y descubre todo lo que Kronex puede ofrecerte.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={scrollToContact}
-                className="bg-gold text-black py-3 px-8 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300"
+                className="bg-electric-blue text-white py-3 px-8 rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-300"
               >
                 Consulta Gratuita
               </button>
               <a
                 href="https://wa.me/573027677393" target="_blank" rel="noopener noreferrer"
-                className="bg-black text-white py-3 px-8 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300"
+                className="bg-carbon-black text-white py-3 px-8 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300"
               >
-                Enviar WhatsApp              </a>
+                Enviar WhatsApp
+              </a>
             </div>
           </div>
         </div>

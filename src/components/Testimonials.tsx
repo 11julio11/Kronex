@@ -9,31 +9,31 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: 'Roberto Gómez',
-      role: 'Miembro desde 2020',
-      quote: 'He probado muchos gimnasios, pero EliteGym realmente cambió mi vida. Los entrenadores son excepcionales y el ambiente me motiva cada día a superar mis límites.',
+      role: 'CEO, TechStart Solutions',
+      quote: 'Kronex transformó completamente nuestra operación digital. Su equipo no solo entregó una solución técnica excepcional, sino que nos acompañó en todo el proceso de transformación.',
       image: testimonial1,
       rating: 5,
     },
     {
       name: 'María Jiménez',
-      role: 'Miembro desde 2021',
-      quote: 'Las instalaciones son de primera clase y el equipo de nutrición realmente marcó la diferencia en mis resultados. No puedo imaginar entrenar en otro lugar.',
+      role: 'Directora de IT, InnovateCorp',
+      quote: 'La aplicación móvil que desarrollaron superó todas nuestras expectativas. El nivel de detalle y la calidad del código es impresionante. Definitivamente volveremos a trabajar con ellos.',
       image: testimonial2,
       rating: 5,
     },
     {
       name: 'Diego Fernández',
-      role: 'Miembro desde 2019',
-      quote: 'EliteGym no es solo un gimnasio, es una comunidad. He logrado metas que nunca pensé posibles gracias al apoyo constante de los entrenadores y otros miembros.',
+      role: 'Fundador, EcoCommerce',
+      quote: 'Kronex no es solo un proveedor de tecnología, son verdaderos socios estratégicos. Nos ayudaron a escalar nuestro e-commerce de 0 a 1M€ en ventas anuales.',
       image: testimonial3,
       rating: 5,
     },
     {
       name: 'Lucía Martínez',
-      role: 'Miembro desde 2022',
-      quote: 'Las clases grupales son increíbles, siempre hay algo nuevo que probar. El ambiente es acogedor a pesar de ser un gimnasio de élite, me sentí bienvenida desde el primer día.',
+      role: 'CTO, FinanceFlow',
+      quote: 'Su expertise en ciberseguridad nos dio la tranquilidad que necesitábamos. La migración a la nube fue perfecta y ahora operamos con total confianza en la seguridad de nuestros datos.',
       image: testimonial4,
-      rating: 4,
+      rating: 5,
     },
   ];
 
